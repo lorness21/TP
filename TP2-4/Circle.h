@@ -6,8 +6,9 @@ private :
 	double diameter;
 
 private :
-	Circle(int _diameter);
-
 	virtual void display() const;
+
+protected : 
+	Circle(int _diameter);
 };
 
