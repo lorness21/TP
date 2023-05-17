@@ -1,11 +1,12 @@
-#include "rectangle.h"
+#include "Rectangle.h"
 
-rectangle::rectangle(int _largeur, int _longueur)
+Rectangle::Rectangle(int _largeur, int _longueur)
 	:largeur(_largeur), longueur(_longueur)
 {
+
 }
 
-void rectangle::display() const
+void Rectangle::display() const
 {
 
 }
