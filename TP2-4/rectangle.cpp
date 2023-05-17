@@ -5,7 +5,7 @@ rectangle::rectangle(int _largeur, int _longueur)
 {
 }
 
-void rectangle::display()
+void rectangle::display() const
 {
 
 }

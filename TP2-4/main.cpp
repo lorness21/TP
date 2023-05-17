@@ -2,6 +2,8 @@
 #include <math.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include "Circle.h"
+#include "rectangle.h"
 
 using namespace cv;
 using namespace std;

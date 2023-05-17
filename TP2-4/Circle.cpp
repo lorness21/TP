@@ -5,3 +5,8 @@ Circle::Circle(int _diameter)
 {
 
 }
+
+void Circle::display() const
+{
+
+}
