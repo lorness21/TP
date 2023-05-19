@@ -6,7 +6,7 @@ Rectangle::Rectangle(int _largeur, int _longueur)
 
 }
 
-void Rectangle::display() const
+void Rectangle::draw() const
 {
 
 }

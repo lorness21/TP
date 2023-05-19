@@ -3,13 +3,14 @@
 
 class Rectangle
 {
-private:
-	double largeur, longueur;
-
 public:
+
+	virtual void draw() const;
+
+protected :
+
+	double largeur;
+	double longueur;
+
 	Rectangle(int _largeur, int _longueur);
-	//rectangle(std::string id, int x, int y, double l, double w, int edge_width, int edge_color, int fill_color);
-
-	virtual void display() const;
 };
-

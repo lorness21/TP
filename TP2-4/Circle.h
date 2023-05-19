@@ -2,13 +2,13 @@
 
 class Circle
 {
-private :
-	double diameter;
+public :
 
-private :
-	virtual void display() const;
+	virtual void draw() const;
 
 protected : 
-	Circle(int _diameter);
+	double radius;
+
+	Circle(int _radius);
 };
 

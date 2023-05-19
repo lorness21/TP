@@ -1,12 +1,12 @@
 #include "Circle.h"
 
-Circle::Circle(int _diameter)
-	: diameter(_diameter)
+Circle::Circle(int _radius)
+	: radius(_radius)
 {
 
 }
 
-void Circle::display() const
+void Circle::draw() const
 {
 
 }

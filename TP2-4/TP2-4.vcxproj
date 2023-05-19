@@ -133,14 +133,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="CircleConsole.cpp" />
     <ClCompile Include="CircleOpenCV.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="RectangleConsole.cpp" />
+    <ClCompile Include="RectangleOpenCV.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="CircleConsole.h" />
     <ClInclude Include="CircleOpenCV.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="RectangleConsole.h" />
+    <ClInclude Include="RectangleOpenCV.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

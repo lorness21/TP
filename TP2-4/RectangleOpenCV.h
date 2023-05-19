@@ -1,23 +1,24 @@
 #pragma once
-#include "Circle.h"
+#include "Rectangle.h"
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
 using namespace cv;
 using namespace std;
 
-class CircleOpenCV : public Circle
+class RectangleOpenCV : public Rectangle
 {
 private :
 
 	Mat Matrix;
-	Point center;
+	Point Starting;
+	Point Ending;
 	Scalar line_Color;
 	double thickness;
 
 public :
 
-	CircleOpenCV(Mat _Matrix, Point _center, double _radius, Scalar _line_Color, double _thickness);
+	RectangleOpenCV(int _longueur, int _largeur, Mat _Matrix, Scalar _line_Color, double _thickness);
 
 	void draw() const;
 };
