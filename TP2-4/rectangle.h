@@ -1,12 +1,9 @@
 #pragma once
 #include <string>
+#include "form.h"
 
-class Rectangle
+class Rectangle : public Form
 {
-public:
-
-	virtual void draw() const;
-
 protected :
 
 	double largeur;

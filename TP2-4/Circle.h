@@ -1,11 +1,8 @@
 #pragma once
+#include "form.h"
 
-class Circle
+class Circle : public Form
 {
-public :
-
-	virtual void draw() const;
-
 protected : 
 	double radius;
 

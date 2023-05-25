@@ -2,16 +2,13 @@
 #include <math.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include "Circle.h"
+
 #include "CircleOpenCV.h"
-#include "Rectangle.h"
 #include "CircleConsole.h"
 #include "RectangleOpenCV.h"
 #include "RectangleConsole.h"
-#include "Triangle.h"
 #include "TriangleConsole.h"
 #include "TriangleOpenCV.h"
-
 
 
 using namespace cv;

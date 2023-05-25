@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\bapti\.vscode\OPEN.CV\opencv\build\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);C:\Users\bapti\.vscode\OPEN.CV\opencv\build\x64\vc16\lib</LibraryPath>
+    <IncludePath>C:\Users\suble\OneDrive\Documents\1. Aurélien\travaille\.1A\opencv\build\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);C:\Users\suble\OneDrive\Documents\1. Aurélien\travaille\.1A\opencv\build\x64\vc16\lib</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -135,7 +135,9 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="CircleConsole.cpp" />
     <ClCompile Include="CircleOpenCV.cpp" />
+    <ClCompile Include="form.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="parseur.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RectangleConsole.cpp" />
     <ClCompile Include="RectangleOpenCV.cpp" />
@@ -147,6 +149,8 @@
     <ClInclude Include="Circle.h" />
     <ClInclude Include="CircleConsole.h" />
     <ClInclude Include="CircleOpenCV.h" />
+    <ClInclude Include="form.h" />
+    <ClInclude Include="parseur.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RectangleConsole.h" />
     <ClInclude Include="RectangleOpenCV.h" />

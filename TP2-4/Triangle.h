@@ -1,10 +1,9 @@
 #pragma once
 #include <string>
-class Triangle
-{
-public:
-	virtual void draw() const;
+#include "form.h"
 
+class Triangle: public Form
+{
 protected:
 
 	int side;
