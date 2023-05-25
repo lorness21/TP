@@ -8,6 +8,11 @@
 #include "CircleConsole.h"
 #include "RectangleOpenCV.h"
 #include "RectangleConsole.h"
+#include "Triangle.h"
+#include "TriangleConsole.h"
+#include "TriangleOpenCV.h"
+
+
 
 using namespace cv;
 using namespace std;
@@ -61,6 +66,39 @@ void FunctionRectangle(Mat Matrix, int choice2)
 	}
 }
 
+void FunctionTriangle(Mat Matrix, int choice2)
+{
+	int side;
+	int base;
+	int hauteur;
+	
+	
+	if (choice2 == 1)
+	{
+		std::cout << "Construction avec la base et la hauteur" << endl << "Veuillez saisir la base" << endl;
+		std::cin >> base;
+		std::cout << "Veuillez saisir la hauteur" << endl;
+		std::cin >> hauteur;
+
+		Scalar line_Color(0, 255, 0);
+		Point pt1(500, 500);
+		Point pt2(500 + base, 500);
+		Point pt3(500 + (base/2), 500 - hauteur);
+		double thickness = 2;
+
+		TriangleOpenCV tr1(0, base, hauteur, Matrix, pt1, pt2, pt3, line_Color, thickness);
+		tr1.draw();
+	}
+	else
+	{
+		std::cout << "Construction avec la longueur d'un côté" << endl << "Veuillez saisir la longueur :" << endl;
+		std::cin >> side;
+
+		TriangleConsole TR1(side, 0, 0, 0);
+		TR1.draw();
+	}
+}
+
 
 int main()
 {
@@ -76,7 +114,7 @@ int main()
 
 	while (choice2 != 0)
 	{
-		std::cout << "rectangle : 1 " << std::endl << "cercle    : 2 " << std::endl << "sortir    : 0 " << std::endl;
+		std::cout << "rectangle : 1 " << std::endl << "cercle    : 2 " << std::endl  << "triangle : 3" << std::endl << "sortir    : 0 " << std::endl;
 		std::cin >> choice2;
 
 		if (choice2 == 2)
@@ -88,6 +126,15 @@ int main()
 		{
 			FunctionRectangle(BlackMatrix, choice1);
 		}
+
+		else if(choice2 == 3)
+		{
+			FunctionTriangle(BlackMatrix, choice1);
+		}
+
+		else if (choice2 == 0)
+		{
+			return 0;
+		}
 	}
-	return 0;
 }
