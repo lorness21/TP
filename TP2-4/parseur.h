@@ -5,6 +5,7 @@
 class Parseur
 {
 public:
+
 	Form parse(std::string forme);
 };
 

@@ -14,30 +14,17 @@
 using namespace cv;
 using namespace std;
 
-void FunctionCircle(Mat Matrix, int choice2)
+void ConsoleFunctionCircle()
 {
 	double Radius;
-
+	double thickness = 2; //Thickness of the line
 	std::cout << "Rentrer un rayon :" << std::endl;
 	std::cin >> Radius;
-
-	Point center(500, 500);
-	double thickness = 2;
-	Scalar line_Color(0, 0, 255);
-
-	if (choice2 == 1)
-	{
-		CircleOpenCV c1(Matrix, center, Radius, line_Color, thickness);
-		c1.draw();
-	}
-	else
-	{
-		CircleConsole C1(Radius, thickness);
-		C1.draw();
-	}
+	CircleConsole C1(Radius, thickness);
+	C1.draw();
 }
 
-void FunctionRectangle(Mat Matrix, int choice2)
+void ConsoleFunctionRectangle()
 {
 	int largeur, longueur;
 
@@ -46,53 +33,48 @@ void FunctionRectangle(Mat Matrix, int choice2)
 	std::cout << "Rentrer une longueur : " << std::endl;
 	std::cin >> longueur;
 
-	Scalar line_Color(0, 255, 0); //Color of the rectangle
-	Point Starting(500, 500); //Declaring the starting coordinate
-	Point Ending(500 + longueur, 500 + largeur); //Declaring the ending coordinate
-	double thickness = 2; //Thickness of the line
-
-	if (choice2 == 1)
-	{
-		RectangleOpenCV r1(longueur, largeur, Matrix, line_Color, thickness);
-		r1.draw();
-	}
-	else
-	{
-		RectangleConsole R1(longueur, largeur);
-		R1.draw();
-	}
+	RectangleConsole R1(longueur, largeur);
+	R1.draw();
 }
 
-void FunctionTriangle(Mat Matrix, int choice2)
+void ConsoleFunctionTriangle()
 {
 	int side;
-	int base;
-	int hauteur;
-	
-	
-	if (choice2 == 1)
+
+	std::cout << "Construction avec la longueur d'un côté" << endl << "Veuillez saisir la longueur :" << endl;
+	std::cin >> side;
+
+	TriangleConsole TR1(side, 0, 0, 0);
+	TR1.draw();
+}
+
+int ConsoleFunction()
+{
+	int choice2 = 1;
+	while (choice2 != 0)
 	{
-		std::cout << "Construction avec la base et la hauteur" << endl << "Veuillez saisir la base" << endl;
-		std::cin >> base;
-		std::cout << "Veuillez saisir la hauteur" << endl;
-		std::cin >> hauteur;
+		std::cout << "rectangle : 1 " << std::endl << "cercle    : 2 " << std::endl << "triangle  : 3" << std::endl << "sortir    : 0 " << std::endl;
+		std::cin >> choice2;
 
-		Scalar line_Color(0, 255, 0);
-		Point pt1(500, 500);
-		Point pt2(500 + base, 500);
-		Point pt3(500 + (base/2), 500 - hauteur);
-		double thickness = 2;
+		if (choice2 == 2)
+		{
+			ConsoleFunctionCircle();
+		}
 
-		TriangleOpenCV tr1(0, base, hauteur, Matrix, pt1, pt2, pt3, line_Color, thickness);
-		tr1.draw();
-	}
-	else
-	{
-		std::cout << "Construction avec la longueur d'un côté" << endl << "Veuillez saisir la longueur :" << endl;
-		std::cin >> side;
+		else if (choice2 == 1)
+		{
+			ConsoleFunctionRectangle();
+		}
 
-		TriangleConsole TR1(side, 0, 0, 0);
-		TR1.draw();
+		else if (choice2 == 3)
+		{
+			ConsoleFunctionTriangle();
+		}
+
+		else if (choice2 == 0)
+		{
+			return 0;
+		}
 	}
 }
 
@@ -100,38 +82,77 @@ void FunctionTriangle(Mat Matrix, int choice2)
 int main()
 {
 	int choice1 = 0;
-	int choice2 = 1;
-
-	Mat BlackMatrix(1000, 1000, CV_8UC3, Scalar(0, 0, 0)); //Declring the Black matrix
-	Point center(500, 500); //Starting Point of the line
-	namedWindow("OpenCV Image"); //Declaring a window to show the line
 
 	std::cout << "OpenCV   : 1" << std::endl << "Console  : 2" << std::endl;
 	std::cin >> choice1;
+	std::cout << std::endl;
 
-	while (choice2 != 0)
+	if (choice1 == 2)
 	{
-		std::cout << "rectangle : 1 " << std::endl << "cercle    : 2 " << std::endl  << "triangle : 3" << std::endl << "sortir    : 0 " << std::endl;
-		std::cin >> choice2;
-
-		if (choice2 == 2)
-		{
-			FunctionCircle(BlackMatrix, choice1);
-		}
-
-		else if (choice2 == 1)
-		{
-			FunctionRectangle(BlackMatrix, choice1);
-		}
-
-		else if(choice2 == 3)
-		{
-			FunctionTriangle(BlackMatrix, choice1);
-		}
-
-		else if (choice2 == 0)
+		int answer;
+		answer = ConsoleFunction();
+		if (answer == 0)
 		{
 			return 0;
 		}
+	}
+
+	if (choice1 == 1)
+	{
+		std::cout << "Touches a utiliser pour afficher les formes :" << std::endl << std::endl;
+		std::cout << "q ou Q : Sortir" << std::endl;
+		std::cout << "c ou C : Afficher un Cercle" << std::endl;
+		std::cout << "r ou R : Afficher un Rectangle" << std::endl;
+		std::cout << "t ou T : Afficher un Triangle" << std::endl << std::endl;
+
+		Mat BlackMatrix(1000, 1000, CV_8UC3, Scalar(0, 0, 0)); //Declring the Black matrix
+		namedWindow("OpenCV Image"); //Declaring a window to show the line
+		imshow("OpenCV Image", BlackMatrix);
+
+		while (true)
+		{
+			srand((unsigned int)time(0));
+			int key = waitKey(0);
+
+			double thickness = rand() % 10 + 1;
+			Scalar line_Color(rand() % 255 + 0, rand() % 255 + 0, rand() % 255 + 0);
+
+			if (key == 'q' || key == 'Q')
+			{
+				break;
+			}
+			if (key == 'c' || key == 'C')
+			{
+				Point center(rand()%1000 + 1, rand()%1000 + 1);
+				int radius = rand()%500 + 1;
+				CircleOpenCV c1(BlackMatrix, center, radius, line_Color, thickness);
+				c1.draw();
+			}
+			if (key == 'r' || key == 'R')
+			{
+				int a = rand() % 1000 + 0;
+				int b = rand() % 1000 + 0;
+				int largeur = rand()%500 + 10;
+				int longueur = rand()%500 + 10;
+				Point Starting(a, b); //Declaring the starting coordinate
+				Point Ending(a + longueur, b + largeur); //Declaring the ending coordinate
+				RectangleOpenCV r1(longueur, largeur, BlackMatrix, line_Color, thickness, Starting, Ending);
+				r1.draw();
+			}
+			if (key == 't' || key == 'T')
+			{
+				int base = rand()%1000 + 10;
+				int hauteur = rand()%1000 + 10;
+				int a = rand()%1000 + 0;
+				int b = rand()%1000 + 0;
+				Point pt1(a, b);
+				Point pt2(a + base, b);
+				Point pt3(a + (base / 2), b - hauteur);
+				TriangleOpenCV tr1(0, base, hauteur, BlackMatrix, pt1, pt2, pt3, line_Color, thickness);
+				tr1.draw();
+			}
+		}
+		destroyAllWindows();
+		return 0;
 	}
 }

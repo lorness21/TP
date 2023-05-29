@@ -12,14 +12,14 @@ class RectangleOpenCV : public Rectangle
 private :
 
 	Mat Matrix;
+	Scalar line_Color;
 	Point Starting;
 	Point Ending;
-	Scalar line_Color;
 	double thickness;
 
 public :
 
-	RectangleOpenCV(int _longueur, int _largeur, Mat _Matrix, Scalar _line_Color, double _thickness);
+	RectangleOpenCV(int _longueur, int _largeur, Mat _Matrix, Scalar _line_Color, double _thickness, Point _Starting, Point _Ending);
 
 	void draw() const;
 };
