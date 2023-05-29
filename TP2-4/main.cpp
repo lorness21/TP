@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <math.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -48,9 +49,10 @@ void ConsoleFunctionTriangle()
 	TR1.draw();
 }
 
-int ConsoleFunction()
+void ConsoleFunction(int &nbrC, int &nbrR, int &nbrT)
 {
 	int choice2 = 1;
+
 	while (choice2 != 0)
 	{
 		std::cout << "rectangle : 1 " << std::endl << "cercle    : 2 " << std::endl << "triangle  : 3" << std::endl << "sortir    : 0 " << std::endl;
@@ -59,29 +61,37 @@ int ConsoleFunction()
 		if (choice2 == 2)
 		{
 			ConsoleFunctionCircle();
+			nbrC += 1;
 		}
 
 		else if (choice2 == 1)
 		{
 			ConsoleFunctionRectangle();
+			nbrR += 1;
 		}
 
 		else if (choice2 == 3)
 		{
 			ConsoleFunctionTriangle();
+			nbrT += 1;
 		}
 
 		else if (choice2 == 0)
 		{
-			return 0;
+			choice2 = 0;
 		}
 	}
 }
 
+void saveString(int number, std::string type, std::ofstream& fileToWrite)
+{
+	fileToWrite << type << " : " << number << std::endl;
+}
 
 int main()
 {
 	int choice1 = 0;
+	int nbrR = 0, nbrC = 0, nbrT = 0;
 
 	std::cout << "OpenCV   : 1" << std::endl << "Console  : 2" << std::endl;
 	std::cin >> choice1;
@@ -89,12 +99,7 @@ int main()
 
 	if (choice1 == 2)
 	{
-		int answer;
-		answer = ConsoleFunction();
-		if (answer == 0)
-		{
-			return 0;
-		}
+		ConsoleFunction(nbrC, nbrR, nbrT);
 	}
 
 	if (choice1 == 1)
@@ -111,7 +116,7 @@ int main()
 
 		while (true)
 		{
-			srand((unsigned int)time(0));
+			srand((unsigned) time(NULL));
 			int key = waitKey(0);
 
 			double thickness = rand() % 10 + 1;
@@ -121,38 +126,58 @@ int main()
 			{
 				break;
 			}
+
 			if (key == 'c' || key == 'C')
 			{
-				Point center(rand()%1000 + 1, rand()%1000 + 1);
-				int radius = rand()%500 + 1;
+				Point center(rand() % 1000 + 1, rand() % 1000 + 1);
+				int radius = rand() % 500 + 1;
 				CircleOpenCV c1(BlackMatrix, center, radius, line_Color, thickness);
 				c1.draw();
+				nbrC += 1;
 			}
+
 			if (key == 'r' || key == 'R')
 			{
 				int a = rand() % 1000 + 0;
 				int b = rand() % 1000 + 0;
-				int largeur = rand()%500 + 10;
-				int longueur = rand()%500 + 10;
+				int largeur = rand() % 500 + 10;
+				int longueur = rand() % 500 + 10;
 				Point Starting(a, b); //Declaring the starting coordinate
 				Point Ending(a + longueur, b + largeur); //Declaring the ending coordinate
 				RectangleOpenCV r1(longueur, largeur, BlackMatrix, line_Color, thickness, Starting, Ending);
 				r1.draw();
+				nbrR += 1;
 			}
+
 			if (key == 't' || key == 'T')
 			{
-				int base = rand()%1000 + 10;
-				int hauteur = rand()%1000 + 10;
-				int a = rand()%1000 + 0;
-				int b = rand()%1000 + 0;
+				int base = rand() % 1000 + 10;
+				int hauteur = rand() % 1000 + 10;
+				int a = rand() % 1000 + 0;
+				int b = rand() % 1000 + 0;
 				Point pt1(a, b);
 				Point pt2(a + base, b);
 				Point pt3(a + (base / 2), b - hauteur);
 				TriangleOpenCV tr1(0, base, hauteur, BlackMatrix, pt1, pt2, pt3, line_Color, thickness);
 				tr1.draw();
+				nbrT += 1;
 			}
 		}
 		destroyAllWindows();
-		return 0;
 	}
+
+	//std::remove("fichier.txt"); //function needed if we do not want to keep the history of what is put in the file, the function deletes the file if it already exists
+	std::ofstream fileToWrite("fichier.txt", std::ios::app);
+
+	if (fileToWrite.is_open())
+	{
+		fileToWrite << std::endl << "--- Nombre de formes creees ---" << std::endl << std::endl;
+		saveString(nbrC, "Cercles", fileToWrite);
+		saveString(nbrR, "Rectangles", fileToWrite);
+		saveString(nbrT, "Triangles", fileToWrite);
+	}
+
+	fileToWrite.close();
+
+	return 0;
 }
