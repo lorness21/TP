@@ -83,6 +83,42 @@ void ConsoleFunction(int &nbrC, int &nbrR, int &nbrT)
 	}
 }
 
+void OpenCVFunctionCircle(Mat BlackMatrix, int &nbrC, Scalar line_Color, double thickness)
+{
+	Point center(rand() % 1000 + 1, rand() % 1000 + 1);
+	int radius = rand() % 500 + 1;
+	CircleOpenCV c1(BlackMatrix, center, radius, line_Color, thickness);
+	c1.draw();
+	nbrC += 1;
+}
+
+void OpenCVFunctionRectangle(Mat BlackMatrix, int& nbrR, Scalar line_Color, double thickness)
+{
+	int a = rand() % 1000 + 0;
+	int b = rand() % 1000 + 0;
+	int largeur = rand() % 500 + 10;
+	int longueur = rand() % 500 + 10;
+	Point Starting(a, b); //Declaring the starting coordinate
+	Point Ending(a + longueur, b + largeur); //Declaring the ending coordinate
+	RectangleOpenCV r1(longueur, largeur, BlackMatrix, line_Color, thickness, Starting, Ending);
+	r1.draw();
+	nbrR += 1;
+}
+
+void OpenCVFunctionTriangle(Mat BlackMatrix, int& nbrT, Scalar line_Color, double thickness)
+{
+	int base = rand() % 1000 + 10;
+	int hauteur = rand() % 1000 + 10;
+	int a = rand() % 1000 + 0;
+	int b = rand() % 1000 + 0;
+	Point pt1(a, b);
+	Point pt2(a + base, b);
+	Point pt3(a + (base / 2), b - hauteur);
+	TriangleOpenCV tr1(0, base, hauteur, BlackMatrix, pt1, pt2, pt3, line_Color, thickness);
+	tr1.draw();
+	nbrT += 1;
+}
+
 void saveString(int number, std::string type, std::ofstream& fileToWrite)
 {
 	fileToWrite << type << " : " << number << std::endl;
@@ -129,38 +165,17 @@ int main()
 
 			if (key == 'c' || key == 'C')
 			{
-				Point center(rand() % 1000 + 1, rand() % 1000 + 1);
-				int radius = rand() % 500 + 1;
-				CircleOpenCV c1(BlackMatrix, center, radius, line_Color, thickness);
-				c1.draw();
-				nbrC += 1;
+				OpenCVFunctionCircle(BlackMatrix, nbrC, line_Color, thickness);
 			}
 
 			if (key == 'r' || key == 'R')
 			{
-				int a = rand() % 1000 + 0;
-				int b = rand() % 1000 + 0;
-				int largeur = rand() % 500 + 10;
-				int longueur = rand() % 500 + 10;
-				Point Starting(a, b); //Declaring the starting coordinate
-				Point Ending(a + longueur, b + largeur); //Declaring the ending coordinate
-				RectangleOpenCV r1(longueur, largeur, BlackMatrix, line_Color, thickness, Starting, Ending);
-				r1.draw();
-				nbrR += 1;
+				OpenCVFunctionRectangle(BlackMatrix, nbrR, line_Color, thickness);
 			}
 
 			if (key == 't' || key == 'T')
 			{
-				int base = rand() % 1000 + 10;
-				int hauteur = rand() % 1000 + 10;
-				int a = rand() % 1000 + 0;
-				int b = rand() % 1000 + 0;
-				Point pt1(a, b);
-				Point pt2(a + base, b);
-				Point pt3(a + (base / 2), b - hauteur);
-				TriangleOpenCV tr1(0, base, hauteur, BlackMatrix, pt1, pt2, pt3, line_Color, thickness);
-				tr1.draw();
-				nbrT += 1;
+				OpenCVFunctionTriangle(BlackMatrix, nbrT, line_Color, thickness);
 			}
 		}
 		destroyAllWindows();
