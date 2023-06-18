@@ -135,7 +135,9 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="CircleConsole.cpp" />
     <ClCompile Include="CircleOpenCV.cpp" />
+    <ClCompile Include="Forme.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Parseur.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RectangleConsole.cpp" />
     <ClCompile Include="RectangleOpenCV.cpp" />
@@ -144,6 +146,8 @@
     <ClInclude Include="Circle.h" />
     <ClInclude Include="CircleConsole.h" />
     <ClInclude Include="CircleOpenCV.h" />
+    <ClInclude Include="Forme.h" />
+    <ClInclude Include="Parseur.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RectangleConsole.h" />
     <ClInclude Include="RectangleOpenCV.h" />
